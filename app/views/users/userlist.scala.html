@@ -1,0 +1,49 @@
+@(users: java.util.List[services.User])
+
+@main("Users catalogue") {
+<div style="margin: 15px">
+    <h2>All Users</h2>
+    <script>
+           function del(urlToDelete) {
+              $.ajax({
+                url: urlToDelete,
+                type: 'DELETE',
+                success: function(results) {
+                // Refresh the page
+                location.reload();
+                }
+                });
+            }
+        </script>
+
+    <table class="table table-stripped">
+        <thead>
+        <tr>
+            <th>IMAGE</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>TELEPHONE</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @for(user <- users){
+        <tr>
+            <td></td>
+            <td><a href="@routes.Users.details(user.name)">@user.name</a> </td>
+            <td><a href="@routes.Users.details(user.name)">@user.email</a> </td>
+            <td><a href="@routes.Users.details(user.name)">@user.telephone</a> </td>
+            <td>
+                <a href="@routes.Products.details(user.name)"><i class="icon icon-pencil">Details</i></a>
+                <a href="" onclick="del('@routes.Users.delete(user.name)')"><i class="icon icon-trash">Delete</i></a>
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
+    <br>
+    <a class="btn btn-default" href="@routes.Users.newUser()"> <i class="icon-plus"></i> New User</a>
+
+</div>
+
+}

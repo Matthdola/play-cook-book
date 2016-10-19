@@ -1,0 +1,53 @@
+@(userForm: Form[services.User])
+@import helper._
+
+@main("User form") {
+
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="header__title">
+                MeAppointement
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div style="margin: 15px; padding: 10px; border: 1px solid #e5e5e5">
+                <h1>Sign up </h1>
+                <div class="text-left">
+                    @helper.form(action = routes.Users.save(), 'enctype -> "multipart/form-data") {
+                    <fieldset>
+                        <legend></legend>
+                        @helper.inputText(userForm("name"), '_label -> "NAME")
+                        @helper.inputText(userForm("email"),'_label -> "EMAIL")
+                        @helper.inputText(userForm("telephone"), '_label -> "TELEPHONE")
+                        @helper.inputPassword(userForm("password"),'_label -> "PASSWORD")
+                        @helper.inputFile(userForm("image"))
+                        @if(!userForm("image").valueOr("").isEmpty()) {
+                        <div class="control-group">
+                            <div class="controls">
+                                <img
+                                        style="position:relative; left:50px;height:80px"
+                                        src="/picture/@userForm("name").value">
+                            </div>
+                        </div>
+                        }
+                    </fieldset>
+                    <input type="submit" class="btn btn-primary" value="Sign up">
+                    <a class="btn" href="@routes.HomeController.index()">Cancel</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+
+
+}

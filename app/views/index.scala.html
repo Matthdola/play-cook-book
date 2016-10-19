@@ -1,0 +1,34 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(message: String)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Welcome to MeAppointement") {
+    <div id="meappointement" class="row">
+        <div class="col-md-9">
+            <h3 class="header__title">
+                MeAppointement
+            </h3>
+        </div>
+        <div id="login" class="col-md-3 text-right ">
+            <a class="btn btn-default" href="@routes.Users.newLogin()">Login</a>
+            <a class="btn btn-default" href="@routes.Users.newUser()"> <i class="icon-plus"></i> Sign up</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"></div>
+    </div>
+}
