@@ -1,0 +1,68 @@
+@(userPageForm: Form[services.User])
+@import helper._
+
+@main("User page") {
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="header__title">
+                MeAppointement
+            </h3>
+        </div>
+        <div id="login" class="col-md-6 text-right">
+            <a class="btn btn-default" href="#">Medecins specialistes</a>
+            <a class="btn btn-default" href="#"> Centre agréé</a>
+            <a class="btn btn-default" href="#"> Demander un rendez vous</a>
+            <a class="btn btn-default" href="@routes.HomeController.index()"> Deconnectez</a>
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+                        <!--aria-haspopup="true" aria-expanded="true">-->
+                    <!--Menu-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                    <!--<li><a href="#">Medecins specialiste</a></li>-->
+                    <!--<li><a href="#">Demande de rendez-vous</a></li>-->
+                    <!--<li><a href="#">Centres agréés</a></li>-->
+
+                    <!--<li role="separator" class="divider"></li>-->
+                    <!--<li><a href="#">Deconnecter</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div id="menu-container" class="row">
+        <div id="user-info" class="col-md-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="@routes.Assets.versioned("images/user.jpeg")" width="150" height="150" alt="Image">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>@userPageForm.name</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>@userPageForm.name</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>@userPageForm.name</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div style="margin: 15px; padding: 10px">
+                <h1> </h1>
+                <div class="text-left">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer" class="row">
+        <div class="col-md-12"></div>
+    </div>
+}

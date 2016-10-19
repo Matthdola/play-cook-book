@@ -1,0 +1,155 @@
+#success-container {
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+}
+
+#error-container {
+    margin: 15px;
+}
+#content {
+    width: 100%;
+    height: 100%;
+}
+
+#login {
+    margin-top: 10px;
+    margin=right: 5px;
+}
+
+#meappointement {
+  width: 100%;
+  height: 100%;
+  color:black;
+  margin: 2px;
+  font-size: 1.5em;
+  background-color: #C5E1A5;
+}
+
+body, html {
+  margin: auto;
+  padding: auto;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: Roboto;
+  font-size: 12px;
+  color: #424242;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+header, nav, footer, section, article, div {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menu-container {
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    height: 80%;
+}
+
+#user-info {
+    border-right: 1px solid #e5e5e5;
+    height: 100%;
+}
+
+
+/*
+ *
+ * Common
+ */
+
+.news__more {
+  float: right;
+  font-size: .8em;
+  color: #333;
+  text-decoration: none;
+}
+
+
+/*
+ *
+ * Header
+ *
+ */
+
+.header {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  min-height: 56px;
+  transition: min-height 0.3s;
+}
+
+.header__inner {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header__logo {
+  height: 72px;
+  margin-right: 1em;
+  vertical-align: top;
+  margin-top: 12px;
+
+}
+
+.header__title {
+  font-weight: 100;
+  font-size: 2em;
+  margin: 0.5em 0.25em;
+  margin-left: 35px;
+  display: inline-block;
+  color: #212121;
+}
+
+
+/*
+ *
+ * Top Level Navigation
+ *
+ */
+
+.nav {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav__list {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.nav__item {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 24%;
+  text-align: center;
+  line-height: 24px;
+  padding: 24px;
+  text-transform: uppercase;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #616161;
+  padding: 1.5em;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+  color: #212121;
+}
