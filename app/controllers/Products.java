@@ -1,17 +1,30 @@
 package controllers;
 
 import play.data.Form;
+import play.libs.Json;
 import play.mvc.*;
 import services.Product;
 import views.html.products.details;
 import views.html.products.list;
 
+import javax.inject.Inject;
+import play.db.NamedDatabase;
+import play.db.Database;
+
 import java.util.List;
 
 public class Products extends Controller {
+    private Database db;
+
+    @Inject
+    public Products(@NamedDatabase("default") Database db){
+        this.db = db;
+    }
+
     public  Result list(){
         List<Product> products = Product.findAll();
-        return ok(list.render(products));
+        return  ok(Json.toJson(products));
+        //return ok(list.render(products));
     }
 
     public  Result newProduct(){

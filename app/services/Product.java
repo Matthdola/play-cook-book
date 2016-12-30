@@ -1,10 +1,14 @@
 package services;
 
 import play.data.validation.Constraints;
+import java.util.*;
 
 import javax.validation.Constraint;
 import java.util.ArrayList;
 import java.util.List;
+
+import play.data.format.*;
+import play.data.validation.*;
 
 public class Product  {
 

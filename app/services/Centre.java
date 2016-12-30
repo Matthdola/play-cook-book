@@ -2,9 +2,6 @@ package services;
 
 import java.util.ArrayList;
 
-/**
- * Created by matth on 28/09/2016.
- */
 public class Centre extends Document {
     private String nom;
     private String pays;

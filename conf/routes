@@ -9,6 +9,7 @@ GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
 
+POST     /hello                      controllers.HomeController.sayHello
 
 GET     /products/                  controllers.Products.list
 GET     /products/new               controllers.Products.newProduct()
@@ -16,15 +17,32 @@ GET     /products/:ean              controllers.Products.details(ean: String)
 POST    /products/                  controllers.Products.save()
 DELETE  /products/:ean              controllers.Products.delete(ean: String)
 
-GET     /users/                     controllers.Users.list
-GET     /users/new                  controllers.Users.newUser()
-GET     /users/:name                controllers.Users.details(name: String)
-POST    /users/                     controllers.Users.save()
-POST    /users/userlogin            controllers.Users.login()
-GET     /users/connection/           controllers.Users.newLogin()
-GET     /users/page/                controllers.Users.openUserPage()
+GET     /v1/users/                     controllers.Users.list
+GET     /v1/users/new                  controllers.Users.newUser()
+GET     /v1/users/:name                controllers.Users.details(name: String)
+POST    /v1/users/                     controllers.Users.save()
+POST    /v1/users/userlogin            controllers.Users.login()
+GET     /v1/users/connection/           controllers.Users.newLogin()
+GET     /v1/users/page/                controllers.Users.openUserPage()
 
-DELETE  /users/:name                controllers.Users.delete(name: String)
+DELETE  /v1/users/:name                controllers.Users.delete(name: String)
+
+#Patient
+GET     /v1/patients/                  controllers.Patient.list
+GET     /v1/patients/:id               controllers.Patient.read(id: String)
+PUT     /v1/patients/:id               controllers.Patient.update(id: String)
+POST    /v1/patients/                  controllers.Patient.create()
+DELETE  /v1/patients/:id               controllers.Patient.delete(id: String)
+
+#Medecin
+GET     /v1/medecins/                           controllers.Medecins.list
+GET     /v1/specialites/:specialite/medecins    controllers.Medecins.listBySpecialite(specialite: String)
+GET     /v1/centres/:centre/medecins            controllers.Medecins.listByCentre(centre: String)
+GET     /v1/medecins/:id                        controllers.Medecins.read(id: String)
+PUT     /v1/medecins/:id                        controllers.Medecins.update(id: String)
+POST    /v1/medecins/                           controllers.Medecins.create()
+DELETE  /v1/medecins/:id                        controllers.Medecins.delete(id: String)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

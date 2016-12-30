@@ -1,12 +1,15 @@
 package controllers;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.io.Files;
 import play.data.Form;
+import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import services.User;
+import play.libs.Json;
 
 import views.html.users.userdetails;
 import views.html.users.userlist;
@@ -22,6 +25,7 @@ public class Users extends Controller {
         List<User> users = User.findAll();
         return ok(userlist.render(users));
     }
+
 
     public  Result newUser(){
         final Form<User> userForm = Form.form(User.class);
@@ -55,9 +59,16 @@ public class Users extends Controller {
         return ok(userpage.render(userForm));
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
     public  Result save(){
+        JsonNode json = request().body().asJson();
+        String name = json.findPath("name").textValue();
+        if (name == null){
+            return badRequest("Missing parameter [name]");
+        }
         final Form<User> userForm = Form.form(User.class);
         Form<User> boundForm = userForm.bindFromRequest();
+
         if(boundForm.hasErrors()){
             flash("error", "Please correct the form below.");
             return badRequest(userdetails.render(boundForm));

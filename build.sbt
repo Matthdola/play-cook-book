@@ -18,5 +18,7 @@ libraryDependencies ++= Seq(
   "org.geotools" % "gt-xml" % "12.1" withSources(),
   "org.geotools.xsd" % "gt-xsd-kml" % "12.1" withSources(),
   "org.apache.commons" % "commons-csv" % "1.4" withSources(),
-  "commons-validator" % "commons-validator" % "1.5.1"  withSources()
+  "commons-validator" % "commons-validator" % "1.5.1"  withSources(),
+  "mysql" % "mysql-connector-java" % "5.1.27"
 )
+
