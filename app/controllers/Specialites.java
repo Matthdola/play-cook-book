@@ -8,39 +8,40 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.Specialite;
 
 import javax.inject.Inject;
 import java.util.List;
 
-public class Patient extends Controller {
+public class Specialites extends Controller {
     private Database db;
 
     @Inject
-    public Patient(@NamedDatabase("default") Database db){
+    public Specialites(@NamedDatabase("default") Database db){
         this.db = db;
     }
 
     public Result list(){
-        List<services.Patient> patients = services.Patient.findAll();
+        List<Specialite> specialites = services.Specialite.findAll();
         ObjectNode result = Json.newObject();
-        result.put("uri", "/v1/patients/");
+        result.put("uri", "/v1/specialites/");
         result.put("status", 200);
-        result.put("patient", Json.toJson(patients));
+        result.put("specialite", Json.toJson(specialites));
         return ok(result);
     }
 
     public Result read(String id){
         if(id == null){
-            return notFound(String.format("Patient %s does not exist.", id));
+            return notFound(String.format("Specialite %s does not exist.", id));
         }
         if(id.isEmpty()){
-            return notFound(String.format("Patient %s does not exist.", id));
+            return notFound(String.format("Specialite %s does not exist.", id));
         }
-        services.Patient patient = services.Patient.findById(id);
-        if(patient == null){
-            return notFound(String.format("Patient %s does not exist.", id));
+        services.Specialite specialite = services.Specialite.findById(id);
+        if(specialite == null){
+            return notFound(String.format("Specialite %s does not exist.", id));
         }
-        return  ok(Json.toJson(patient));
+        return  ok(Json.toJson(specialite));
     }
 
     @BodyParser.Of(BodyParser.Json.class)
@@ -53,12 +54,12 @@ public class Patient extends Controller {
             if(name == null){
                 return badRequest("Missing parameter [name]");
             }else {
-                services.Patient patient = Json.fromJson(json, services.Patient.class);
-                services.Patient.save(patient);
+                services.Specialite specialite = Json.fromJson(json, services.Specialite.class);
+                services.Specialite.save(specialite);
                 ObjectNode result = Json.newObject();
-                result.put("uri", "/v1/patients/");
+                result.put("uri", "/v1/specialites/");
                 result.put("status", 202);
-                result.put("patient", Json.toJson(patient).toString());
+                result.put("specialite", Json.toJson(specialite).toString());
                 return ok(result);
             }
         }
@@ -74,15 +75,15 @@ public class Patient extends Controller {
             if(name == null){
                 return badRequest("Missing parameter [name]");
             }else {
-                services.Patient patient = Json.fromJson(json, services.Patient.class);
-                if(!patient.getId().equals(id)){
+                services.Specialite specialite = Json.fromJson(json, services.Specialite.class);
+                if(!specialite.getId().equals(id)){
                     return notFound("User not found");
                 }
-                services.Patient.update(patient);
+                services.Specialite.update(specialite);
                 ObjectNode result = Json.newObject();
-                result.put("uri", "/v1/patients/"+id);
+                result.put("uri", "/v1/specialites/"+id);
                 result.put("status", 200);
-                result.put("patient", Json.toJson(patient).toString());
+                result.put("specialite", Json.toJson(specialite).toString());
                 return ok(result);
             }
         }
@@ -90,21 +91,20 @@ public class Patient extends Controller {
 
     public Result delete(String id){
         if(id == null){
-            return notFound(String.format("Patient %s does not exist.", id));
+            return notFound(String.format("Specialite %s does not exist.", id));
         }
         if (id.isEmpty()){
-            return notFound(String.format("Patient %s does not exist.", id));
+            return notFound(String.format("Specialite %s does not exist.", id));
         }
-        services.Patient patient = services.Patient.findById(id);
-        if(patient == null){
-            return notFound(String.format("Patient %s does not exist.", id));
+        services.Specialite specialite = services.Specialite.findById(id);
+        if(specialite == null){
+            return notFound(String.format("Specialite %s does not exist.", id));
         }
-        services.Patient.remove(patient);
+        services.Specialite.remove(specialite);
         ObjectNode result = Json.newObject();
-        result.put("uri", "/v1/patients/"+id);
+        result.put("uri", "/v1/specialites/"+id);
         result.put("status", 200);
-        result.put("patient", Json.toJson(patient).toString());
+        result.put("specialite", Json.toJson(specialite).toString());
         return ok(result);
     }
-
 }

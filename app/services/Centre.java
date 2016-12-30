@@ -1,6 +1,8 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class Centre extends Document {
     private String nom;
@@ -12,6 +14,18 @@ public class Centre extends Document {
     private String cellulaire;
     private String logoUrl;
     private ArrayList<Integer> specialites;
+
+
+    public static List<Centre> centres;
+
+    static {
+        centres = new ArrayList<Centre>();
+        centres.add(new Centre());
+        centres.add(new Centre());
+        centres.add(new Centre());
+        centres.add(new Centre());
+        centres.add(new Centre());
+    }
 
     public Centre(){
 
@@ -108,5 +122,42 @@ public class Centre extends Document {
 
     public void addSpecialite(int numeroSpecialite){
         this.specialites.add(numeroSpecialite);
+    }
+
+    public static List<Centre> findAll() {
+        return new ArrayList<>(centres);
+    }
+
+    public static Centre findById(String id){
+        for (Centre candidate : centres){
+            if(candidate.getId().equals(id)){
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    public static List<Centre> findByName(String term){
+        final  List<Centre> results = new ArrayList<>();
+        for (Centre candidate : centres){
+            if(candidate.getNom().equals(term)){
+                results.add(candidate);
+            }
+        }
+        return results;
+    }
+
+    public static boolean remove(Centre centre){
+        return centres.remove(centre);
+    }
+
+    public static void save(Centre centre){
+        centres.add(centre);
+    }
+
+    public static void update(Centre centre){
+        Predicate<Centre> centrePredicate = p -> p.getId().equals(centre.getId());
+        centres.removeIf(centrePredicate);
+        centres.add(centre);
     }
 }
